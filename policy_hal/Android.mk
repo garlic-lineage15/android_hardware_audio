@@ -26,6 +26,7 @@ LOCAL_C_INCLUDES := $(TOPDIR)frameworks/av/services \
                     $(TOPDIR)frameworks/av/services/audiopolicy/engine/interface \
                     $(TOPDIR)frameworks/av/services/audiopolicy \
                     $(TOPDIR)frameworks/av/services/audiopolicy/common/managerdefinitions/include \
+                    $(TOPDIR)system/core/base/include \
                     $(call include-path-for, avextension)
 
 
@@ -39,9 +40,6 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_STATIC_LIBRARIES := \
     libmedia_helper \
-
-LOCAL_CFLAGS += -Wall -Werror
-LOCAL_CLANG_CFLAGS += -Wno-overloaded-virtual -Wno-unused-variable -Wno-unused-private-field 
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY)),true)
 LOCAL_CFLAGS += -DVOICE_CONCURRENCY
@@ -68,11 +66,11 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD)),true)
 endif
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_HDMI_SPK)),true)
-    LOCAL_CFLAGS += -DAUDIO_EXTN_HDMI_SPK_ENABLED
+LOCAL_CFLAGS += -DAUDIO_EXTN_HDMI_SPK_ENABLED
 endif
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_PROXY_DEVICE)),true)
-    LOCAL_CFLAGS += -DAUDIO_EXTN_AFE_PROXY_ENABLED
+LOCAL_CFLAGS += -DAUDIO_EXTN_AFE_PROXY_ENABLED
 endif
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_FM_POWER_OPT)),true)
